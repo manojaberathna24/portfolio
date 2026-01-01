@@ -1,0 +1,103 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+// We need to add FaDownload for the new button
+import { FaGithub, FaLinkedin, FaTwitter, FaReact, FaNodeJs, FaPython, FaJava, FaDocker, FaAngular, FaInstagram, FaDownload } from 'react-icons/fa';
+import { FiMail } from 'react-icons/fi';
+import { SiJavascript, SiMongodb, SiTailwindcss, SiCplusplus, SiFirebase, SiTensorflow, SiFlask, SiOpenai } from 'react-icons/si';
+import { useTypewriter, Cursor } from 'react-simple-typewriter';
+import ParticleBackground from './ParticleBackground';
+import { motion } from 'framer-motion';
+
+// Memoized background components - AI/ML focused icons
+const icons = [
+    { component: FaReact, color: '#61DAFB' }, { component: FaNodeJs, color: '#339933' },
+    { component: SiJavascript, color: '#F7DF1E' }, { component: FaPython, color: '#3776AB' },
+    { component: FaJava, color: '#f89820' }, { component: SiMongodb, color: '#47A248' },
+    { component: FaDocker, color: '#2496ED' }, { component: SiTailwindcss, color: '#06B6D4' },
+    { component: SiTensorflow, color: '#FF6F00' }, { component: SiFlask, color: '#000000' },
+    { component: SiFirebase, color: '#FFCA28' },
+];
+
+const MemoizedFloatingIcons = React.memo(() => {
+    return (
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-50">
+            {icons.map((Icon, index) => {
+                const duration = Math.random() * 15 + 15;
+                const size = Math.random() * 25 + 30;
+                const top = `${Math.random() * 90}%`;
+                const left = `${Math.random() * 90}%`;
+                return (
+                    <motion.div
+                        key={index}
+                        className="absolute"
+                        style={{ top, left, color: Icon.color }}
+                        animate={{ y: [0, -10, 5, 10, 0, -5], x: [0, 5, -10, 0, 10, 0] }}
+                        transition={{ duration, ease: 'linear', repeat: Infinity, repeatType: 'mirror' }}
+                    >
+                        <Icon.component size={size} />
+                    </motion.div>
+                );
+            })}
+        </div>
+    );
+});
+
+const MemoizedParticleBackground = React.memo(ParticleBackground);
+
+
+const Hero = () => {
+    const [text] = useTypewriter({
+        words: ['AI/ML Engineer', 'Full Stack Developer', 'Data Science Enthusiast'],
+        loop: {},
+        typeSpeed: 100,
+        deleteSpeed: 80,
+    });
+
+    return (
+        <div className="relative pt-10 pb-16 md:pt-20 md:pb-15 flex items-center justify-center text-center overflow-hidden">
+            <MemoizedParticleBackground />
+            <MemoizedFloatingIcons />
+
+            <div className="relative z-10 flex flex-col items-center px-4">
+                <img src="/profile.png" alt="Manoj Aberathna" className="w-48 h-48 rounded-full object-cover object-top border-4 border-[#64ffda] mb-6 bg-[#0a192f]" />
+                <h1 className="text-5xl md:text-6xl font-bold text-white mb-2">Manoj Aberathna</h1>
+                <h2 className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-[#64ffda] to-blue-500 bg-clip-text text-transparent mb-2 min-h-[56px]">
+                    <span>{text}</span>
+                    <Cursor cursorStyle='|' />
+                </h2>
+                <p className="max-w-2xl text-lg text-[#ccd6f6] mb-6 leading-relaxed">
+                    I build <span className="text-[#64ffda] font-semibold">intelligent AI solutions</span> that solve real-world problems.
+                    Passionate about Machine Learning and Data Science, I love creating <span className="text-[#64ffda] font-semibold">end-to-end AI applications</span> —
+                    from image classification to automated meeting assistants 🤖
+                </p>
+                <div className="flex space-x-6 mb-8">
+                    <a href="https://github.com/manojaberathna24" target="_blank" rel="noopener noreferrer" className="text-[#ccd6f6] hover:text-[#64ffda] transition-colors"><FaGithub size={30} /></a>
+                    <a href="https://www.linkedin.com/in/manojaberathna/" target="_blank" rel="noopener noreferrer" className="text-[#ccd6f6] hover:text-[#64ffda] transition-colors"><FaLinkedin size={30} /></a>
+                    <a href="mailto:sandaruwanctk@gmail.com" className="text-[#ccd6f6] hover:text-[#64ffda] transition-colors"><FiMail size={30} /></a>
+                    <a href="https://www.instagram.com/YOUR_USERNAME" target="_blank" rel="noopener noreferrer" className="text-[#ccd6f6] hover:text-[#64ffda] transition-colors"><FaInstagram size={30} /></a>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                    <Link
+                        to="/projects"
+                        className="bg-transparent border-2 border-[#64ffda] text-[#64ffda] font-bold py-3 px-8 rounded hover:bg-[#64ffda] hover:text-[#0a1f2f] transition-all flex items-center justify-center gap-2"
+                    >
+                        View My Projects
+                    </Link>
+                    <a
+                        href="projects/Manoj_Aberathna_CV.pdf"
+                        download="Manoj_Aberathna_CV.pdf"
+                        className="bg-transparent border-2 border-[#64ffda] text-[#64ffda] font-bold py-3 px-8 rounded hover:bg-[#64ffda] hover:text-[#0a1f2f] transition-all flex items-center justify-center gap-2"
+                    >
+                        <FaDownload />
+                        <span>Grab my CV</span>
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+    )
+}
+
+export default Hero;
