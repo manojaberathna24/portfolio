@@ -1,6 +1,7 @@
 backend:
   name: git-gateway
   branch: main
+  repo: manojaberathna24/portfolio
 
 media_folder: "public/projects"
 public_folder: "/projects"
@@ -21,30 +22,6 @@ collections:
       - { label: "Images", name: "images", widget: "list", field: { label: "Image", name: "image", widget: "image" } }
       - { label: "Order", name: "order", widget: "number", default: 0 }
 
-  - name: "education"
-    label: "Education"
-    folder: "src/data/education"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Institution", name: "institution", widget: "string" }
-      - { label: "Date", name: "date", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Image", name: "image", widget: "image", required: false }
-      - { label: "Order", name: "order", widget: "number", default: 0 }
-
-  - name: "certifications"
-    label: "Certifications"
-    folder: "src/data/certifications"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Provider", name: "provider", widget: "string" }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Image", name: "image", widget: "image", required: false }
-      - { label: "Order", name: "order", widget: "number", default: 0 }
-
   - name: "settings"
     label: "Site Settings"
     files:
@@ -56,9 +33,3 @@ collections:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Bio", name: "bio", widget: "text" }
           - { label: "Profile Image", name: "profileImage", widget: "image" }
-          - label: "Social Links"
-            name: "socialLinks"
-            widget: "list"
-            fields:
-              - { label: "Platform", name: "platform", widget: "string" }
-              - { label: "URL", name: "url", widget: "string" }
