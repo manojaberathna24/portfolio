@@ -104,7 +104,7 @@ const Connect = () => {
                             </div>
                             <div className="flex items-center gap-3 text-[#ccd6f6]">
                                 <FiMapPin className="text-[#64ffda]" />
-                                <span>Samanthi Niwasa, Karambe, Maho</span>
+                                <span>Colombo, Sri Lanka</span>
                             </div>
                         </div>
 
